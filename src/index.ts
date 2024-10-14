@@ -1,8 +1,10 @@
 import { Elysia } from "elysia";
+import { swagger } from "@elysiajs/swagger";
 
 const app = new Elysia()
-  .get("/", () => "Hello Elysia")
-  .get("/hello", "Do you miss me?")
+  .use(swagger())
+  .get("/", ({ path }) => path)
+  .post("/hello", "Do you miss me?")
   .listen(3000);
 
 console.log(
